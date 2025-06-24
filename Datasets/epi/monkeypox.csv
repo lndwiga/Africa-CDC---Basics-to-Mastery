@@ -1,4 +1,4 @@
-country,iso3,who_region,month_start,month_lab,cases,deaths
+Country,Iso3,Who region,Month Start,Month Lab,Cases,Deaths
 Andorra,AND,EURO,01/11/2023,Nov-23,0,0
 Andorra,AND,EURO,01/12/2023,Dec-23,0,0
 Andorra,AND,EURO,01/01/2024,Jan-24,0,0
