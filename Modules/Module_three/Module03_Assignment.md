@@ -111,7 +111,9 @@ Welcome to the Module 03 assignment! This challenge will test your ability to wo
 
 ### 🔹 Redirection & Editing
 
-1) **Edit `headers.txt` using `nano`, change one header, and save.**
+
+
+### 1️⃣ Edit `headers.txt` using `nano`, change one header, and save.
 
 <details>
   <summary>Show Answer</summary>
@@ -122,47 +124,39 @@ Welcome to the Module 03 assignment! This challenge will test your ability to wo
   (Edit one line manually and press `Ctrl+O`, `Enter` to save, and `Ctrl+X` to exit)
 </details>
 
-2) **Use `>` to write the first 20 lines of the FASTA file into `top20.fasta`.**
+---
+
+### 2️⃣ Use `>` to write the first 20 lines of `headers.txt` into `top20.txt`.
 
 <details>
   <summary>Show Answer</summary>
 
   ```bash
-  head -n 20 16s_rRNA.fasta > top20.fasta
-  ```
-</details>
-
-3) **Use `>>` to append the last 5 lines of the FASTA file to `top20.fasta`.**
-
-<details>
-  <summary>Show Answer</summary>
-
-  ```bash
-  tail -n 5 16s_rRNA.fasta >> top20.fasta
-  ```
-</details>
-
-4) **Use `tee` to display and save all headers to `visible_headers.txt`.**
-
-<details>
-  <summary>Show Answer</summary>
-
-  ```bash
-  grep "^>" 16s_rRNA.fasta | tee visible_headers.txt
+  head -n 20 headers.txt > top20.txt
   ```
 </details>
 
 ---
 
-### 🔹 Sequence Content Extraction
-
-1) **Use `grep -v "^>"` to extract all sequences only (non-header lines) into `sequences_only.txt`.**
+### 3️⃣ Use `>>` to append the last 5 lines of `headers.txt` to `top20.txt`.
 
 <details>
   <summary>Show Answer</summary>
 
   ```bash
-  grep -v "^>" 16s_rRNA.fasta > sequences_only.txt
+  tail -n 5 headers.txt >> top20.txt
+  ```
+</details>
+
+---
+
+### 4️⃣ Use `tee` to display and save all headers (lines starting with `>`) to `visible_headers.txt`.
+
+<details>
+  <summary>Show Answer</summary>
+
+  ```bash
+  grep "^>" headers.txt | tee visible_headers.txt
   ```
 </details>
 
