@@ -115,28 +115,38 @@ echo "Trimming reads with fastp..."
 
 for R1 in "$RAW_DIR"/*_R1_001.fastq.gz
 do
+
     BASENAME=$(basename "$R1")
     sample=$(echo "$BASENAME" | cut -d'_' -f2)
     R2="${R1/_R1_/_R2_}"
 
     echo "Trimming Sample: $sample"
 
-    fastp       -i "$R1" -I "$R2"       -o "$TRIMMED_DIR/${sample}_trimmed_R1.fastq.gz"       -O "$TRIMMED_DIR/${sample}_trimmed_R2.fastq.gz"       --thread 4       --length_required 50       --trim_tail1 1       --trim_tail2 1       --n_base_limit 0       -h "$FASTP_REPORTS/${sample}_fastp.html"       -j "$FASTP_REPORTS/${sample}_fastp.json"       -a CTGTCTCTTATACACATCT
-
+    fastp -i "$R1" -I "$R2" \
+        -o "$TRIMMED_DIR/${sample}_trimmed_R1.fastq.gz" \
+        -O "$TRIMMED_DIR/${sample}_trimmed_R2.fastq.gz" \
+        --thread 4 \
+        --length_required 50 \
+        --trim_tail1 1 \
+        --trim_tail2 1 \
+        --n_base_limit 0 \
+        -h "$FASTP_REPORTS/${sample}_fastp.html" \
+        -j "$FASTP_REPORTS/${sample}_fastp.json" \
 done
+
 echo "Trimming complete."
 echo "-----------------------------------"
+
 ```
 
 ### Explanation:
 #### fastp flags used:
 - `-i` / `-I`: Input FASTQ files for R1 and R2.
 - `-o` / `-O`: Output trimmed FASTQ files.
-- `--thread 4`: Use 4 CPU threads.
+- `--thread 4`: Use 4 CPU threads - this depends on your computing power.
 - `--length_required 50`: Discard reads shorter than 50 bases after trimming.
 - `--trim_tail1 1` / `--trim_tail2 1`: Trim 1 base from the end of each read to remove low-quality tails.
 - `--n_base_limit 0`: Discard reads containing any `N` base.
-- `-a`: Explicit adapter sequence to remove (`CTGTCTCTTATACACATCT` — e.g., Nextera).
 - `-h` / `-j`: Generate per-sample HTML and JSON reports.
 
 fastp outputs go to:
